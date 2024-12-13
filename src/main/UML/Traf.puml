@@ -1,0 +1,61 @@
+@startuml
+skinparam backgroundColor #f9f9f9
+skinparam style strictuml
+
+package "Gateway Layer" {
+  interface GatewayService {
+    + routeRequest()
+    + authenticate()
+  }
+}
+
+package "Service Discovery Layer" {
+  interface DiscoveryService {
+    + registerService()
+    + discover()
+  }
+}
+
+package "Business Logic Layer" {
+  interface TrafficManagementService {
+    + adjustLights()
+    + processSensorData()
+  }
+
+  interface ParkingManagementService {
+    + findParking()
+    + notifyDrivers()
+  }
+
+  interface PublicTransportService {
+    + predictArrival()
+    + optimizeRoutes()
+  }
+
+  interface NotificationService {
+    + sendAlert()
+    + pushNotification()
+  }
+}
+
+package "Monitoring and Logging Layer" {
+  interface MonitoringAndLoggingService {
+    + traceRequests()
+    + logEvents()
+  }
+}
+
+GatewayService --> DiscoveryService : Discover microservices
+DiscoveryService --> TrafficManagementService : Locate service
+DiscoveryService --> ParkingManagementService : Locate service
+DiscoveryService --> PublicTransportService : Locate service
+
+TrafficManagementService --> MonitoringAndLoggingService : Log events
+ParkingManagementService --> MonitoringAndLoggingService : Log events
+PublicTransportService --> MonitoringAndLoggingService : Log events
+NotificationService --> MonitoringAndLoggingService : Log notifications
+
+TrafficManagementService --> NotificationService : Send alerts
+ParkingManagementService --> NotificationService : Notify drivers
+PublicTransportService --> NotificationService : Push updates
+@enduml
