@@ -1,0 +1,40 @@
+@startuml
+package "Gateway y Configuración" {
+    [API Gateway]
+    [Discovery Server (Eureka)]
+    [Spring Cloud Config]
+}
+
+package "Servicios de Tráfico" {
+    [Servicio Semáforos]
+    [Servicio Estacionamiento]
+    [Servicio Transporte Público]
+}
+
+package "Servicios de Energía" {
+    [Smart Grid Service]
+    [Iluminación Pública Inteligente]
+    [Energía Renovable]
+}
+
+package "Servicios de Agua" {
+    [Monitoreo de Redes]
+    [Riego Inteligente]
+}
+
+package "Servicios de Residuos" {
+    [Contenedores Inteligentes]
+    [Reciclaje Inteligente]
+}
+
+[API Gateway] --> [Servicio Semáforos]
+[API Gateway] --> [Smart Grid Service]
+[API Gateway] --> [Monitoreo de Redes]
+[API Gateway] --> [Contenedores Inteligentes]
+
+[Discovery Server (Eureka)] <--> [Servicio Semáforos]
+[Discovery Server (Eureka)] <--> [Smart Grid Service]
+[Discovery Server (Eureka)] <--> [Monitoreo de Redes]
+[Discovery Server (Eureka)] <--> [Contenedores Inteligentes]
+
+@enduml

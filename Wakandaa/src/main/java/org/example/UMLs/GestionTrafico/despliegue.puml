@@ -1,0 +1,34 @@
+@startuml
+node "Gateway" {
+    [API Gateway]
+}
+
+node "Discovery Server" {
+    [Eureka Server]
+}
+
+node "Microservicios" {
+    component [Servicio Semáforos]
+    component [Smart Grid Service]
+    component [Monitoreo de Redes]
+    component [Contenedores Inteligentes]
+}
+
+node "Base de Datos" {
+    database "BD Semáforos"
+    database "BD Energía"
+    database "BD Agua"
+    database "BD Residuos"
+}
+
+[API Gateway] --> [Eureka Server]
+[Eureka Server] --> [Servicio Semáforos]
+[Eureka Server] --> [Smart Grid Service]
+[Eureka Server] --> [Monitoreo de Redes]
+[Eureka Server] --> [Contenedores Inteligentes]
+
+[Servicio Semáforos] --> "BD Semáforos"
+[Smart Grid Service] --> "BD Energía"
+[Monitoreo de Redes] --> "BD Agua"
+[Contenedores Inteligentes] --> "BD Residuos"
+@enduml
