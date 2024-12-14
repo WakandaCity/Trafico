@@ -1,0 +1,11 @@
+@startuml
+actor SensorTrafico as Sensor
+participant ServicioSemaforos as Servicio
+participant Semaforo
+
+Sensor -> Servicio : enviarDatos()
+Servicio -> Servicio : procesarDatos()
+Servicio -> Semaforo : ajustarTiempo()
+Semaforo -> Servicio : confirmarAjuste()
+Servicio -> Sensor : recibirConfirmación()
+@enduml

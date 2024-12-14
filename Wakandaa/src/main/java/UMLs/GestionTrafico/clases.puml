@@ -1,0 +1,27 @@
+@startuml
+class Semaforo {
+    +String id
+    +String ubicacion
+    +String estado
+    +int duracion
+    +ajustarTiempo()
+}
+
+class SensorTrafico {
+    +String id
+    +String ubicacion
+    +Map<Timestamp, Integer> datos
+    +enviarDatos()
+}
+
+class Estacionamiento {
+    +String id
+    +String ubicacion
+    +boolean estado
+    +actualizarEstado()
+}
+
+Semaforo "1" -- "*" SensorTrafico : "Monitorea"
+Semaforo "1" -- "*" Estacionamiento : "Controla"
+
+@enduml
